@@ -1,10 +1,11 @@
 import './App.css'
+import  Header  from './components/shared/Header'
 
 function App() {
 
   return (
     <>
-      <p className='text-3xl font-bold'>Hello World!</p>
+    <Header/>
     </>
   )
 }
