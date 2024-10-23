@@ -7,7 +7,7 @@ const LetterIllustration = () => {
           </clipPath>
         </defs>
         
-        <rect x="20" y="40" width="160" height="120" fill="#f8fafc" stroke="#0f172a" stroke-width="2">
+        <rect x="20" y="40" width="160" height="120" fill="#f8fafc" stroke="#0f172a" strokeWidth="2">
           <animate 
             attributeName="y" 
             values="40;45;40" 
@@ -16,7 +16,7 @@ const LetterIllustration = () => {
           />
         </rect>
         
-        <g clip-path="url(#envelope-clip)">
+        <g clipPath="url(#envelope-clip)">
           <rect x="35" y="60" width="130" height="4" rx="2" fill="#e2e8f0">
             <animate 
               attributeName="width" 
@@ -48,7 +48,7 @@ const LetterIllustration = () => {
           </rect>
         </g>
         
-        <g stroke="#3b82f6" stroke-width="2">
+        <g stroke="#3b82f6" strokeWidth="2">
           <path d="M40 30 L40 20">
             <animate 
               attributeName="opacity" 
@@ -67,7 +67,7 @@ const LetterIllustration = () => {
           </path>
         </g>
         
-        <g stroke="#3b82f6" stroke-width="2" transform="translate(160,0)">
+        <g stroke="#3b82f6" strokeWidth="2" transform="translate(160,0)">
           <path d="M40 30 L40 20">
             <animate 
               attributeName="opacity" 
