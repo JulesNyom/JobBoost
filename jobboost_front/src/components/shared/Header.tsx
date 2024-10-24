@@ -75,8 +75,12 @@ export default function Header() {
               </a>
             ))}
             <div className="pt-2 space-y-2">
-              <Button variant="outline" className="w-full">Start</Button>
-              <Button className="w-full">Buy More Jetons</Button>
+              <Button variant="outline" className="w-full">
+                <a href="#">Commencer maintenant</a>
+              </Button>
+              <Button className="w-full">
+              <a href="#">Obtenir plus de jetons</a>
+              </Button>
             </div>
           </div>
         </motion.div>
