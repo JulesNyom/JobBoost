@@ -108,7 +108,6 @@ export default function Footer() {
           </p>
         </motion.div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-primary/50 to-background" />
     </footer>
   )
 }
