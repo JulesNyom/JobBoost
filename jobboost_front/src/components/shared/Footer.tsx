@@ -1,192 +1,114 @@
-import { Button } from "@/components/ui/button";
-import {
-  Github,
-  Twitter,
-  Linkedin,
-  Instagram,
-  ArrowUpRight,
-} from "lucide-react";
+import { Button } from "@/components/ui/button"
+import { motion } from 'framer-motion'
+import { Facebook, Github, Instagram, Mail, Sparkles, Twitter } from 'lucide-react'
 
-interface FooterLink {
-  label: string;
-  href: string;
-  external?: boolean;
-}
-
-interface FooterSection {
-  title: string;
-  links: FooterLink[];
-}
-
-const footerSections: FooterSection[] = [
-  {
-    title: "Produit",
-    links: [
-      { label: "Fonctionnalités", href: "/features" },
-      { label: "Tarifs", href: "/pricing" },
-      { label: "Témoignages", href: "/testimonials" },
-      { label: "Guide d'utilisation", href: "/guide" },
-      { label: "Mises à jour", href: "/updates" },
-    ],
-  },
-  {
-    title: "Entreprise",
-    links: [
-      { label: "À propos", href: "/about" },
-      { label: "Blog", href: "/blog" },
-      { label: "Carrières", href: "/careers" },
-      { label: "Contact", href: "/contact" },
-      { label: "Presse", href: "/press" },
-    ],
-  },
-  {
-    title: "Légal",
-    links: [
-      { label: "Conditions d'utilisation", href: "/terms" },
-      { label: "Politique de confidentialité", href: "/privacy" },
-      { label: "Mentions légales", href: "/legal" },
-      { label: "Cookies", href: "/cookies" },
-      { label: "RGPD", href: "/gdpr" },
-    ],
-  },
-  {
-    title: "Ressources",
-    links: [
-      { label: "Centre d'aide", href: "/help" },
-      { label: "Documentation API", href: "/api", external: true },
-      { label: "Statut du service", href: "/status" },
-      { label: "FAQ", href: "/faq" },
-      { label: "Partenaires", href: "/partners" },
-    ],
-  },
-];
-
-const socialLinks = [
-  {
-    label: "Twitter",
-    href: "https://twitter.com/youraccount",
-    icon: Twitter,
-  },
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com/company/yourcompany",
-    icon: Linkedin,
-  },
-  {
-    label: "GitHub",
-    href: "https://github.com/yourcompany",
-    icon: Github,
-  },
-  {
-    label: "Instagram",
-    href: "https://instagram.com/youraccount",
-    icon: Instagram,
-  },
-];
-
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
+export default function Footer() {
+  const handleSubscribe = () => {
+    // Handle newsletter subscription
+    console.log('Ouverture du formulaire d\'abonnement')
+  }
 
   return (
-    <footer className="border-t bg-white">
-      <div className="mx-auto max-w-7xl px-4 py-12">
-        {/* Main footer content */}
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12">
-          {footerSections.map((section) => (
-            <div key={section.title} className="space-y-4">
-              <h4 className="text-sm font-semibold text-gray-900">
-                {section.title}
-              </h4>
-              <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="group inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-900 transition-colors"
-                    >
-                      {link.label}
-                      {link.external && (
-                        <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      )}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* Newsletter section */}
-        <div className="mt-12 border-t pt-8">
-          <div className="grid gap-8 md:grid-cols-[2fr,1fr]">
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-gray-900">
-                Restez informé
-              </h4>
-              <div className="flex gap-2 max-w-md">
-                <input
-                  type="email"
-                  placeholder="Votre email"
-                  className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                />
-                <Button>S'inscrire</Button>
-              </div>
-              <p className="text-xs text-gray-500">
-                En vous inscrivant, vous acceptez notre{" "}
-                <a href="/privacy" className="underline hover:text-gray-900">
-                  politique de confidentialité
-                </a>
-              </p>
-            </div>
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-gray-900">
-                Suivez-nous
-              </h4>
-              <div className="flex gap-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group rounded-lg border border-gray-200 p-2 hover:border-gray-300 transition-colors"
-                    aria-label={social.label}
-                  >
-                    <social.icon className="h-5 w-5 text-gray-500 group-hover:text-gray-900 transition-colors" />
+    <footer className="bg-gradient-to-r from-primary/10 via-primary/5 to-background pt-16 pb-8 overflow-hidden">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
+          >
+            <h2 className="text-3xl font-bold text-primary flex items-center">
+              JobBoost <Sparkles className="ml-2 text-yellow-400" />
+            </h2>
+            <p className="text-muted-foreground">Propulsez votre carrière avec des opportunités et des insights basés sur l'IA.</p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <h3 className="text-lg font-semibold mb-4 text-primary">Liens Rapides</h3>
+            <ul className="space-y-2">
+              {[
+                { name: 'Commencer', href: '/commencer' },
+                { name: 'Comment ça marche', href: '/comment-ca-marche' },
+                { name: 'Contactez-nous', href: '/contactez-nous' }
+              ].map((item) => (
+                <motion.li key={item.name} whileHover={{ x: 5 }} transition={{ type: 'spring' }}>
+                  <a href={item.href} className="text-muted-foreground hover:text-primary transition-colors">
+                    {item.name}
                   </a>
-                ))}
-              </div>
-            </div>
-          </div>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <h3 className="text-lg font-semibold mb-4 text-primary">Ressources</h3>
+            <ul className="space-y-2">
+              {[
+                { name: 'Blog', href: '/blog' },
+                { name: 'FAQ', href: '/faq' },
+                { name: 'Politique de confidentialité', href: '/politique-de-confidentialite' }
+              ].map((item) => (
+                <motion.li key={item.name} whileHover={{ x: 5 }} transition={{ type: 'spring' }}>
+                  <a href={item.href} className="text-muted-foreground hover:text-primary transition-colors">
+                    {item.name}
+                  </a>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="space-y-4"
+          >
+            <h3 className="text-lg font-semibold text-primary">Restez Informé</h3>
+            <p className="text-muted-foreground">Abonnez-vous à notre newsletter pour les dernières informations sur l'emploi.</p>
+            <Button onClick={handleSubscribe} className="w-full">
+              <Mail className="mr-2 h-4 w-4" /> S'abonner à la newsletter
+            </Button>
+          </motion.div>
         </div>
-
-        {/* Bottom bar */}
-        <div className="mt-8 border-t pt-8">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-500">
-                © {currentYear} VotreProduit. Tous droits réservés.
-              </span>
-              <span className="text-sm text-gray-500">
-                🇫🇷 Made in France
-              </span>
-            </div>
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="sm">
-                Français
-              </Button>
-              <a
-                href="#top"
-                className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex flex-col items-center space-y-4 mt-12 pt-8 border-t border-primary/10"
+        >
+          <div className="flex space-x-6">
+            {[
+              { icon: Facebook, href: 'https://facebook.com/jobboost' },
+              { icon: Twitter, href: 'https://twitter.com/jobboost' },
+              { icon: Instagram, href: 'https://instagram.com/jobboost' },
+              { icon: Github, href: 'https://github.com/jobboost' },
+            ].map(({ icon: Icon, href }) => (
+              <motion.a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                whileHover={{ y: -5 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               >
-                Retour en haut ↑
-              </a>
-            </div>
+                <Icon size={24} />
+                <span className="sr-only">{Icon.name}</span>
+              </motion.a>
+            ))}
           </div>
-        </div>
+          <p className="text-center text-muted-foreground">
+            © {new Date().getFullYear()} JobBoost. Tous droits réservés.
+          </p>
+        </motion.div>
       </div>
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-primary/50 to-background" />
     </footer>
-  );
-};
-
-export default Footer;
+  )
+}

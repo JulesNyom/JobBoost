@@ -1,126 +1,125 @@
-'use client'
-
 import { motion } from 'framer-motion'
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Sparkles, ArrowRight } from "lucide-react"
-import hero from '../../assets/images/hero.webp';
+import { ArrowRight, Briefcase, ChartLine, Users } from 'lucide-react'
 
-const HeroSection = () => {
+export default function HeroSection() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80 flex items-center justify-center p-4">
-      <div className="max-w-5xl mx-auto text-center space-y-12 relative">
-        {/* Background Decoration */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
+    <section className="relative overflow-hidden bg-gradient-to-br from-primary/20 via-background to-primary/20 py-20">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row items-center justify-between">
           <motion.div
-            className="absolute -top-1/2 -left-1/2 w-full h-full bg-primary/5 rounded-full"
-            animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 360],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-          <motion.div
-            className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-primary/5 rounded-full"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              rotate: [360, 0],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        </div>
-
-        {/* Main Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-6"
-        >
-          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-primary">
-            Moti<span className="text-primary">Pro</span>
-          </h1>
-          
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Transformez votre lettre de motivation en quelques clics avec l'IA
-          </p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="lg:w-1/2 mb-10 lg:mb-0"
           >
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8">
-              Commencer Maintenant
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </motion.div>
-        </motion.div>
-
-        {/* Feature Cards */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 my-12"
-        >
-          {[
-            { title: "Personnalisé", description: "Adapté à chaque offre d'emploi" },
-            { title: "Rapide", description: "Résultats en quelques secondes" },
-            { title: "Professionnel", description: "Ton adapté et convincant" }
-          ].map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
+            <motion.h1
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
             >
-              <Card className="p-6 bg-card/50 backdrop-blur hover:bg-card/80 transition-all duration-300 hover:shadow-lg">
-                <Sparkles className="w-10 h-10 text-primary mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-primary mb-2">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground">{feature.description}</p>
-              </Card>
+              Boost Your Career with{' '}
+              <span className="text-primary">JobBoost</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="text-xl text-muted-foreground mb-6"
+            >
+              Unlock your potential and find your dream job with our AI-powered platform.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+            >
+              <a
+                href="#get-started"
+                className="inline-flex items-center px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-lg hover:bg-primary/90 transition-colors duration-200"
+              >
+                Get Started
+                <ArrowRight className="ml-2" />
+              </a>
             </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Image Section */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          className="relative w-full max-w-lg mx-auto"
-        >
-          <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl opacity-30"></div>
-          <img 
-            src={hero}
-            alt="Illustration de MotiPro"
-            className="relative rounded-lg shadow-xl mx-auto"
-          />
-        </motion.div>
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="space-y-4"
-        >
-          <p className="text-sm text-muted-foreground">
-            Optimisez votre recherche d'emploi dès aujourd'hui
-          </p>
-        </motion.div>
+          </motion.div>
+          <div className="lg:w-1/2 relative">
+            <JobBoostIllustration />
+            <FloatingElement
+              Icon={Briefcase}
+              className="absolute top-0 left-0 text-primary"
+            />
+            <FloatingElement
+              Icon={ChartLine}
+              className="absolute bottom-0 left-1/4 text-secondary"
+            />
+            <FloatingElement
+              Icon={Users}
+              className="absolute top-1/4 right-0 text-accent"
+            />
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 
-export default HeroSection
+function JobBoostIllustration() {
+  return (
+    <motion.svg
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+      width="100%"
+      height="100%"
+      viewBox="0 0 500 500"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <motion.circle
+        cx="250"
+        cy="250"
+        r="200"
+        fill="url(#gradient)"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      />
+      <motion.path
+        d="M250 150L350 300H150L250 150Z"
+        fill="currentColor"
+        className="text-primary"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1 }}
+      />
+      <motion.path
+        d="M250 350L200 250L300 250L250 350Z"
+        fill="currentColor"
+        className="text-secondary"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1.2 }}
+      />
+      <defs>
+        <linearGradient id="gradient" x1="0" y1="0" x2="500" y2="500" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#4F46E5" />
+          <stop offset="1" stopColor="#9333EA" />
+        </linearGradient>
+      </defs>
+    </motion.svg>
+  )
+}
+
+function FloatingElement({ Icon, className }: { Icon: React.ElementType; className: string }) {
+  return (
+    <motion.div
+      className={`p-3 rounded-full bg-background shadow-lg ${className}`}
+      initial={{ y: 0 }}
+      animate={{ y: [0, -10, 0] }}
+      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+    >
+      <Icon size={24} />
+    </motion.div>
+  )
+}

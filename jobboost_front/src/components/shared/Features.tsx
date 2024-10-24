@@ -1,12 +1,14 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { useState } from "react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { motion, AnimatePresence } from "framer-motion"
+import { ChevronRight } from "lucide-react"
 
 interface Feature {
-  emoji: string;
-  title: string;
-  description: string;
-  imageUrl: string;
+  emoji: string
+  title: string
+  description: string
+  imageUrl: string
 }
 
 const features: Feature[] = [
@@ -34,16 +36,18 @@ const features: Feature[] = [
     description: "Obtenez une lettre parfaitement adaptée aux standards professionnels français.",
     imageUrl: "/placeholder.svg?height=400&width=600"
   }
-];
+]
 
-const MotionCard = motion(Card);
+const MotionCard = motion(Card)
 
 export default function Features() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
   return (
-    <section className="py-16 bg-gradient-to-b from-background to-secondary/20">
+    <section className="py-24 bg-gradient-to-b from-background to-secondary/20">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-4xl font-bold text-center mb-12"
+          className="text-5xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -51,15 +55,17 @@ export default function Features() {
           Nos Fonctionnalités
         </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {features.map((feature, index) => (
             <MotionCard 
               key={index}
-              className="overflow-hidden group hover:shadow-xl transition-all duration-300"
+              className="overflow-hidden group hover:shadow-2xl transition-all duration-300 bg-card/50 backdrop-blur-sm border-primary/10"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -10 }}
+              onHoverStart={() => setHoveredIndex(index)}
+              onHoverEnd={() => setHoveredIndex(null)}
             >
               <CardContent className="p-0">
                 <div className="relative overflow-hidden aspect-video">
@@ -70,39 +76,55 @@ export default function Features() {
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   />
-                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-primary/0 transition-colors duration-300" />
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-4">
+                <div className="p-8">
+                  <div className="flex items-center gap-4 mb-6">
                     <motion.div 
-                      className="text-4xl"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
+                      className="text-5xl"
+                      initial={{ scale: 0, rotate: -180 }}
+                      animate={{ scale: 1, rotate: 0 }}
                       transition={{ type: "spring", stiffness: 260, damping: 20 }}
                     >
                       {feature.emoji}
                     </motion.div>
-                    <h3 className="text-xl font-semibold">
+                    <h3 className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
                       {feature.title}
                     </h3>
                   </div>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="text-muted-foreground mb-6 text-lg">
                     {feature.description}
                   </p>
-                  <Button 
-                    variant="ghost" 
-                    className="group/button hover:bg-primary/10 transition-all duration-300"
-                  >
-                    En savoir plus 
-                    <motion.span 
-                      className="inline-block ml-1"
-                      initial={{ x: 0 }}
-                      whileHover={{ x: 5 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    >
-                      →
-                    </motion.span>
-                  </Button>
+                  <AnimatePresence>
+                    {hoveredIndex === index && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 20 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Button 
+                          variant="default" 
+                          className="group/button bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-300"
+                        >
+                          En savoir plus 
+                          <motion.div 
+                            className="inline-block ml-2"
+                            initial={{ x: 0 }}
+                            animate={{ x: 5 }}
+                            transition={{ repeat: Infinity, duration: 0.8, repeatType: "reverse" }}
+                          >
+                            <ChevronRight className="h-4 w-4" />
+                          </motion.div>
+                        </Button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </CardContent>
             </MotionCard>
@@ -110,5 +132,5 @@ export default function Features() {
         </div>
       </div>
     </section>
-  );
+  )
 }
